@@ -4,7 +4,7 @@ import com.example.wbsp19devanshiganatraserverside.model.Lesson;
 import com.example.wbsp19devanshiganatraserverside.model.Module;
 import com.example.wbsp19devanshiganatraserverside.model.Topic;
 import com.example.wbsp19devanshiganatraserverside.model.Widget;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,58 @@ public class ModuleService {
         lessons.add(lesson1);
     }};
 
-    Module module1= new Module(1, "Module1", lessons);
+    Module module1 = new Module(101, "Module1", lessons);
+
+    List<Module> modules = new ArrayList<Module>(){{
+        modules.add(module1);
+    }};
+
+    @PostMapping("/api/courses/{cid}/modules")
+    public Module createModule(
+            @PathVariable("cid") Integer mid  , @RequestBody Module module) {
+        modules.add(module);
+        return module;
+    }
+
+
+    @GetMapping("api/course/{cid}/modules")
+    public List<Module> findAllModules(
+            @PathVariable("cid") Integer cid) {
+
+        return modules;
+    }
+
+    @GetMapping("api/modules/{mid}")
+    public Module findModuleById(@PathVariable("mid") Integer id) {
+        for (Module module : modules) {
+            if (id == module.getId().intValue())
+                return module;
+        }
+        return null;
+    }
+
+    @PutMapping("/api/modules/{mid}")
+    public void updateModule(@RequestBody Module module) {
+        for (int i = 0; i < modules.size(); i++) {
+            if (module.getId() == modules.get(i).getId().intValue()){
+                modules.get(i).setId(module.getId());
+                modules.get(i).setTitle(module.getTitle());
+                modules.get(i).setLessons(module.getLessons());
+                break;
+            }
+        }
+
+    }
+
+    @DeleteMapping("/api/modules/{mid}")
+    public void deleteModule(@PathVariable("mid") Integer id) {
+        for (int i = 0; i < modules.size(); i++) {
+            if (id == modules.get(i).getId().intValue()) {
+                modules.remove(i);
+            }
+        }
+
+    }
 
 
 
