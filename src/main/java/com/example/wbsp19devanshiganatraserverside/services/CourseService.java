@@ -1,7 +1,7 @@
 package com.example.wbsp19devanshiganatraserverside.services;
 
 import com.example.wbsp19devanshiganatraserverside.model.*;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +34,55 @@ public class CourseService {
     }};
 
     Course course1 = new Course(1, "Course1", modules);
+
+    List<Course> courses = new ArrayList<Course>(){{
+        courses.add(course1);
+    }};
+
+    @PostMapping("/api/courses")
+    public Course createCourse(
+            @RequestBody Course course) {
+        courses.add(course);
+        return course;
+    }
+
+
+    @GetMapping("/api/courses")
+    public List<Course> findAllCourses() {
+
+        return courses;
+    }
+
+    @GetMapping("/api/courses/{cid}")
+    public Course findCourseById(@PathVariable("cid") Integer id) {
+        for (Course course : courses) {
+            if (id == course.getId().intValue())
+                return course;
+        }
+        return null;
+    }
+
+    @PutMapping("/api/courses/{cid}")
+    public void updateCourse(@RequestBody Course course) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (course.getId() == courses.get(i).getId().intValue()){
+                courses.get(i).setId(course.getId());
+                courses.get(i).setTitle(course.getTitle());
+                courses.get(i).setModules(course.getModules());
+                break;
+            }
+        }
+
+    }
+
+    @DeleteMapping("/api/courses/{cid}")
+    public void deleteModule(@PathVariable("cid") Integer id) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (id == courses.get(i).getId().intValue()) {
+                courses.remove(i);
+            }
+        }
+
+    }
 
 }
