@@ -4,24 +4,24 @@ import java.util.List;
 
 public class Lesson {
 
-    private Integer id;
+    private Long id;
     private String title;
     private List<Topic> topics;
 
 
     public Lesson () {}
 
-    public Lesson(Integer id, String title, List<Topic> topics) {
+    public Lesson(Long id, String title, List<Topic> topics) {
         this.id = id;
         this.title = title;
         this.topics = topics;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

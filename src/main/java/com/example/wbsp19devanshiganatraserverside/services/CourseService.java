@@ -7,36 +7,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class CourseService {
 
-    Widget widget1 = new Widget(101, "Heading", "Heading Widget" );
+    Widget widget1 = new Widget(111111L, "Heading", "Heading Widget" );
 
     List<Widget> widgets = new ArrayList<Widget>(){{
-        widgets.add(widget1);
+        add(widget1);
     }};
 
-    Topic topic1 = new Topic(101, "Topic1", widgets);
+    Topic topic1 = new Topic(111111L, "Topic1", widgets);
 
     List<Topic> topics = new ArrayList<Topic>(){{
-        topics.add(topic1);
+        add(topic1);
     }};
 
-    Lesson lesson1 = new Lesson(101, "Lesson1", topics);
+    Lesson lesson1 = new Lesson(111111L, "Lesson1", topics);
 
     List<Lesson> lessons = new ArrayList<Lesson>(){{
-        lessons.add(lesson1);
+        add(lesson1);
     }};
 
-    Module module1= new Module(1, "Module1", lessons);
+    Module module1= new Module(111111L, "Module1", lessons);
 
     List<Module> modules = new ArrayList<Module>(){{
-        modules.add(module1);
+        add(module1);
     }};
 
-    Course course1 = new Course(1, "Course1", modules);
+    Course course1 = new Course(111111L, "Course1", modules);
 
     List<Course> courses = new ArrayList<Course>(){{
-        courses.add(course1);
+        add(course1);
     }};
 
     @PostMapping("/api/courses")
@@ -54,18 +55,18 @@ public class CourseService {
     }
 
     @GetMapping("/api/courses/{cid}")
-    public Course findCourseById(@PathVariable("cid") Integer id) {
+    public Course findCourseById(@PathVariable("cid") Long id) {
         for (Course course : courses) {
-            if (id == course.getId().intValue())
+            if (id == course.getId().longValue())
                 return course;
         }
         return null;
     }
 
     @PutMapping("/api/courses/{cid}")
-    public void updateCourse(@RequestBody Course course) {
+    public void updateCourse(@PathVariable("cid") Long id, @RequestBody Course course) {
         for (int i = 0; i < courses.size(); i++) {
-            if (course.getId() == courses.get(i).getId().intValue()){
+            if (course.getId() == courses.get(i).getId().longValue()){
                 courses.get(i).setId(course.getId());
                 courses.get(i).setTitle(course.getTitle());
                 courses.get(i).setModules(course.getModules());
@@ -76,9 +77,10 @@ public class CourseService {
     }
 
     @DeleteMapping("/api/courses/{cid}")
-    public void deleteModule(@PathVariable("cid") Integer id) {
-        for (int i = 0; i < courses.size(); i++) {
-            if (id == courses.get(i).getId().intValue()) {
+    public void deleteCourse(@PathVariable("cid") Long id) {
+        for (int i = 0; i < courses.size(); i++)
+        {
+            if (id == courses.get(i).getId().longValue()) {
                 courses.remove(i);
             }
         }

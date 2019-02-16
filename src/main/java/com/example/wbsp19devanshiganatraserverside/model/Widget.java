@@ -2,8 +2,7 @@ package com.example.wbsp19devanshiganatraserverside.model;
 
 public class Widget {
 
-    private Integer id;
-
+    private Long id;
     private String type;
     private Integer size;
     private String text;
@@ -15,7 +14,7 @@ public class Widget {
 
     public Widget () {}
 
-    public Widget(Integer id, String type, String text1) {
+    public Widget(Long id, String type, String text1) {
         this.id = id;
         this.type = type;
         this.size = 1;
@@ -28,11 +27,11 @@ public class Widget {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

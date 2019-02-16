@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Topic {
 
-    private Integer id;
+    private Long id;
     private String title;
     private List<Widget> widgets;
 
     public Topic () {}
 
-    public Topic(Integer id, String title, List<Widget> widgets) {
+    public Topic(Long id, String title, List<Widget> widgets) {
         this.id = id;
         this.title = title;
         this.widgets = widgets;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -4,23 +4,23 @@ import java.util.List;
 
 public class Course {
 
-    private Integer id;
+    private Long id;
     private String title;
     private List<Module> modules;
 
     public Course () {}
 
-    public Course(Integer id, String title, List<Module> modules) {
+    public Course(Long id, String title, List<Module> modules) {
         this.id = id;
         this.title = title;
         this.modules = modules;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
