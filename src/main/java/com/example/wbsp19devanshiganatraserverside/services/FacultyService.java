@@ -8,9 +8,10 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "*", allowCredentials = "true")
+//@CrossOrigin(origins = "*", allowCredentials = "true")
 public class FacultyService {
 
     Person person1 = new Person (111111L, "d", "g", "jhff", 9909503664L, "dev", "gan");
@@ -28,7 +29,7 @@ public class FacultyService {
     }
 
 
-    @PostMapping("/api/profile")
+    @GetMapping("/api/profile")
     public Person profile(HttpSession session) {
         Person currentUser = (Person)
                 session.getAttribute("currentUser");
@@ -39,7 +40,7 @@ public class FacultyService {
     public Person login(@RequestBody Person credentials,
                           HttpSession session) {
         for (Person person : persons) {
-            if( person.getFirstName().equals(credentials.getFirstName())
+            if( person.getUserName().equals(credentials.getUserName())
                     && person.getPassword().equals(credentials.getPassword())) {
                 session.setAttribute("currentUser", person);
                 return person;
