@@ -2,7 +2,7 @@ package com.example.wbsp19devanshiganatraserverside.model;
 
 public class Person {
 
-    private Long Id;
+    private Long id;
     private String userName;
     private String password;
     private String email;
@@ -10,8 +10,11 @@ public class Person {
     private String firstName;
     private String lastName;
 
+
+    public Person () {}
+
     public Person(Long id, String userName, String password, String email, Long phoneNumber, String firstName, String lastName) {
-        Id = id;
+        id = id;
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -21,11 +24,11 @@ public class Person {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public String getUserName() {

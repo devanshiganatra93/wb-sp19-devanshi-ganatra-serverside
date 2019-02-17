@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", allowCredentials = "true")
 public class FacultyService {
 
     Person person1 = new Person (111111L, "d", "g", "jhff", 9909503664L, "dev", "gan");
@@ -60,7 +61,7 @@ public class FacultyService {
     }
 
     @GetMapping("/api/persons/{pid}")
-    public Person findPersonsById(@PathVariable("pid") Long id) {
+    public Person findPersonById(@PathVariable("pid") Long id) {
         for (Person person : persons) {
             if (id == person.getId().longValue())
                 return person;
