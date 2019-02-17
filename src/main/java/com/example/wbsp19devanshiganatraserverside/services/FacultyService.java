@@ -61,6 +61,20 @@ public class FacultyService {
         return persons;
     }
 
+
+    @PostMapping("/api/update/{personId}")
+    public void updateProfile(@RequestBody Person person, @PathVariable("personId") Long id){
+        for(int i=0; i<persons.size(); i++){
+            if(person.getUserName().equals(persons.get(i).getUserName())){
+                persons.get(i).setFirstName(person.getFirstName());
+                persons.get(i).setLastName(person.getLastName());
+                persons.get(i).setEmail(person.getEmail());
+                persons.get(i).setPhoneNumber(person.getPhoneNumber());
+                return;
+            }
+        }
+    }
+
     @GetMapping("/api/persons/{pid}")
     public Person findPersonById(@PathVariable("pid") Long id) {
         for (Person person : persons) {
